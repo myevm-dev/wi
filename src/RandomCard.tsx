@@ -8,6 +8,7 @@ interface RandomCardProps {
 
 export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition }) => {
   const [sliderValue, setSliderValue] = useState(50); // Initial slider value set to 50
+  const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 101)); // Placeholder random number between 0 and 100
 
   // Handle the slider value change with constraints
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +39,8 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
       <div className="flex flex-col items-center justify-center text-white flex-grow">
         <h1 className="text-xl">Random Card</h1>
 
-        {/* Placeholder for another component above the slider */}
-        <div className="w-full mt-4">
-          {/* This can be replaced with another component */}
-          <div className="text-white">Another Component Goes Here</div>
-        </div>
+        {/* Display the large random number */}
+        <div className="text-white text-6xl mt-6">{randomNumber}</div>
       </div>
 
       {/* Range Slider */}
