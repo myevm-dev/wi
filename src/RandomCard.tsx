@@ -16,7 +16,7 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
 
   return (
     <div
-      className={`w-[800px] h-[420px] bg-black border border-gray-500 rounded-lg shadow-md flex flex-col items-center justify-between transition-all duration-300`}
+      className={`w-[800px] h-[420px] bg-black border-4 border-purple-500 rounded-lg shadow-md flex flex-col items-center justify-between transition-all duration-300`}
     >
       <div className="flex flex-col items-center justify-center text-white flex-grow">
         <h1 className="text-xl">Random Card</h1>
@@ -46,16 +46,20 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
       <div className="flex gap-4 ml-4 mb-4 w-full">
         <button
           className={`${
-            position === "under" ? "bg-blue-500" : "bg-gray-500"
-          } text-white p-2 rounded w-[48%]`}
+            position === "under"
+              ? "bg-purple-500 text-black"
+              : "bg-black text-white border-4 border-purple-500"
+          } p-2 rounded w-[48%]`}
           onClick={() => setPosition("under")}
         >
           Under
         </button>
         <button
           className={`${
-            position === "over" ? "bg-blue-500" : "bg-gray-500"
-          } text-white p-2 rounded w-[48%]`}
+            position === "over"
+              ? "bg-purple-500 text-black"
+              : "bg-black text-white border-4 border-purple-500"
+          } p-2 rounded w-[48%]`}
           onClick={() => setPosition("over")}
         >
           Over
