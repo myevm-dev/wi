@@ -20,3 +20,20 @@
     @apply bg-zinc-950 text-neutral-200;
   }
 }
+
+/* Ensure no scrolling on both desktop and mobile */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling */
+}
+
+/* Ensure main element fills the screen */
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  overflow: hidden;
+}
