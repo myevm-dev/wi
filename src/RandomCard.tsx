@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { calculatePayout } from "./probability"; // Import the utility
 
 interface RandomCardProps {
@@ -36,6 +36,15 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
 
     setSliderValue(value);
   };
+
+  // Adjust slider value when the position changes
+  useEffect(() => {
+    if (position === "under" && sliderValue > 95) {
+      setSliderValue(95); // Enforce the 95 max when switching to "under"
+    } else if (position === "over" && sliderValue < 5) {
+      setSliderValue(5); // Enforce the 5 min when switching to "over"
+    }
+  }, [position, sliderValue]);
 
   // Calculate the slider background depending on position
   const sliderBackground = position === "over"
