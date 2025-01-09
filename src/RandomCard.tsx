@@ -14,6 +14,11 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
     setSliderValue(Number(e.target.value));
   };
 
+  // Calculate the slider background depending on position
+  const sliderBackground = position === "over"
+    ? `linear-gradient(to right, white ${sliderValue}%, purple ${sliderValue}%)`
+    : `linear-gradient(to right, purple ${sliderValue}%, white ${sliderValue}%)`;
+
   return (
     <div
       className={`w-[800px] h-[420px] bg-black border-4 border-purple-500 rounded-lg shadow-md flex flex-col items-center justify-between transition-all duration-300`}
@@ -29,7 +34,7 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
       </div>
 
       {/* Range Slider */}
-      <div className="w-[90%] mt-6 mb-4">
+      <div className="w-[90%] mt-6 mb-4 relative">
         <input
           id="slider"
           type="range"
@@ -37,7 +42,10 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
           max="100"
           value={sliderValue}
           onChange={handleSliderChange}
-          className="w-full"
+          className="w-full h-2 appearance-none rounded-lg"
+          style={{
+            background: sliderBackground, // Apply dynamic background
+          }}
         />
         <div className="text-white text-center">{sliderValue}</div>
       </div>
