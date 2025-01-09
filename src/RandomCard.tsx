@@ -47,7 +47,8 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
             background: sliderBackground, // Apply dynamic background
           }}
         />
-        <div className="text-white text-center">{sliderValue}</div>
+        {/* Display the selected number with a larger font size */}
+        <div className="text-white text-center text-3xl mt-2">{sliderValue}</div>
       </div>
 
       {/* Button Container at the Bottom of the Card */}
