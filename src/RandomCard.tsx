@@ -9,9 +9,21 @@ interface RandomCardProps {
 export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition }) => {
   const [sliderValue, setSliderValue] = useState(50); // Initial slider value set to 50
 
-  // Handle the slider value change
+  // Handle the slider value change with constraints
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSliderValue(Number(e.target.value));
+    let value = Number(e.target.value);
+
+    // If "under" is selected, make sure the value doesn't exceed 95
+    if (position === "under" && value > 95) {
+      value = 95;
+    }
+
+    // If "over" is selected, make sure the value doesn't go below 5
+    if (position === "over" && value < 5) {
+      value = 5;
+    }
+
+    setSliderValue(value);
   };
 
   // Calculate the slider background depending on position
