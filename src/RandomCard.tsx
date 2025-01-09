@@ -17,6 +17,13 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = Number(e.target.value);
 
+    // Block 0 and 100 values
+    if (value === 0) {
+      value = 1; // set to 1 to avoid selecting 0
+    } else if (value === 100) {
+      value = 99; // set to 99 to avoid selecting 100
+    }
+
     // If "under" is selected, make sure the value doesn't exceed 95
     if (position === "under" && value > 95) {
       value = 95;
@@ -40,10 +47,9 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
       className={`w-[800px] h-[420px] bg-black border-4 border-purple-500 rounded-lg shadow-md flex flex-col items-center justify-between transition-all duration-300`}
     >
       <div className="flex flex-col items-center justify-center text-white flex-grow">
-        <h1 className="text-xl">Random Card</h1>
 
         {/* Display the large random number */}
-        <div className="text-white text-6xl mt-6">{randomNumber}</div>
+        <div className="text-white text-8xl mt-6">{randomNumber}</div>
       </div>
 
       {/* Range Slider */}
@@ -51,8 +57,8 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
         <input
           id="slider"
           type="range"
-          min="0"
-          max="100"
+          min="1"  // Change minimum to 1
+          max="99"  // Change maximum to 99
           value={sliderValue}
           onChange={handleSliderChange}
           className="w-full h-2 appearance-none rounded-lg"
