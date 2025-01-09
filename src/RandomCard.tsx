@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { calculatePayout } from "./probability"; // Import the utility
 
-// Typing the position prop to only accept "over" or "under"
 interface RandomCardProps {
   position: "over" | "under";
   setPosition: React.Dispatch<React.SetStateAction<"over" | "under">>;
@@ -9,6 +9,9 @@ interface RandomCardProps {
 export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition }) => {
   const [sliderValue, setSliderValue] = useState(50); // Initial slider value set to 50
   const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 101)); // Placeholder random number between 0 and 100
+
+  // Calculate payout using the utility function
+  const payout = calculatePayout(sliderValue, position);
 
   // Handle the slider value change with constraints
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +86,11 @@ export const RandomCard: React.FC<RandomCardProps> = ({ position, setPosition })
         >
           Over
         </button>
+      </div>
+
+      {/* Display Payout */}
+      <div className="text-white text-2xl mt-4">
+        1 to win {payout.toFixed(2)}
       </div>
     </div>
   );
